@@ -3,7 +3,7 @@
   <head>
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser-arcade-physics.min.js"></script>
   </head>
-  <body>
+  <body style="background: red">
     <script>
       class Example extends Phaser.Scene {
         preload() {
@@ -18,7 +18,7 @@
 
           const particles = this.add.particles(0, 0, 'red', {
             speed: 100,
-            scale: { start: 1, end: 0 },
+            scale: { start: 0.5, end: 0 },
             blendMode: 'ADD',
           });
 
@@ -34,8 +34,10 @@
 
       const config = {
         type: Phaser.AUTO,
-        width: 800,
+        width: 1000,
         height: 600,
+        backgroundColor: 'FFFFFF',
+        autoCenter: true,
         scene: Example,
         physics: {
           default: 'arcade',
