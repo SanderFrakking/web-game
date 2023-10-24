@@ -2,10 +2,10 @@
 
 /** @type {import("prettier").config} */
 const config = {
-   trailingComma: 'es5',
-   tabWidth: 4,
-   singleQuote: true,
-   printWidth: 300,
-   bracketSameLine: true,
+    trailingComma: 'es5',
+    tabWidth: 2,
+    singleQuote: true,
+    printWidth: 300,
+    bracketSameLine: true,
 };
 module.exports = config;
