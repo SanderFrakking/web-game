@@ -7,19 +7,16 @@
     <script>
       class Example extends Phaser.Scene {
         preload() {
-          this.load.setBaseURL('https://labs.phaser.io');
-          this.load.image('sky', 'assets/skies/space3.png');
-          this.load.image('logo', 'assets/sprites/phaser3-logo.png');
-          this.load.image('red', 'assets/particles/red.png');
+          this.load.image('sprBackground', 'images/');
+          this.load.image('sprPlayer', 'images/');
         }
 
         create() {
-          player = this.physics.add.circle; //TODO: circle maken van de player en een random kleur geven
           this.add.image(400, 300, 'sky');
 
           const particles = this.add.particles(0, 0, 'red', {
             speed: 100,
-            scale: { start: 0.5, end: 0 },
+            scale: { start: 1, end: 0 },
             blendMode: 'ADD',
           });
 
@@ -37,23 +34,16 @@
 
       const config = {
         type: Phaser.AUTO,
-        width: 1400,
+        width: 800,
         height: 600,
-        backgroundColor: 'FFFFFF',
-        physics: {
-          default: 'arcade',
-          arcade: {
-            Gravity: { x: 0, y: 0 },
-          },
-        },
-        autoCenter: true,
         scene: Example,
         physics: {
           default: 'arcade',
           arcade: {
-            gravity: { y: 200 },
+            gravity: { x: 0, y: 0 },
           },
         },
+        roundPixels: true,
       };
 
       const game = new Phaser.Game(config);
