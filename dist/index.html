@@ -7,35 +7,33 @@
     <script>
       class Example extends Phaser.Scene {
         preload() {
-          this.load.image('sprBackground', 'images/');
-          this.load.image('sprPlayer', 'images/');
+          this.load.image('sprBackground', 'images/Background.jpg');
         }
 
         create() {
-          this.add.image(400, 300, 'sky');
+          this.bg = this.add.tileSprite(0, 0, 8000, 8000, 'sprBackground');
 
-          const particles = this.add.particles(0, 0, 'red', {
-            speed: 100,
-            scale: { start: 1, end: 0 },
-            blendMode: 'ADD',
-          });
+          this.r1 = this.add.circle(20, 20, 8, 0x6666ff);
+          this.player.setOrigin(0.5);
+          this.cameras.main.startFollow(this.player);
+        }
 
-          const logo = this.physics.add.image(400, 100, 'logo');
+        update() {
+          // Calculate the angle toward the mouse (world coordinates) from the player
+          var dx = this.input.activePointer.worldX - this.r1.x;
+          var dy = this.input.activePointer.worldY - this.r1.y;
 
-          logo.setVelocity(100, 200);
-          logo.setBounce(1, 1);
-          logo.setCollideWorldBounds(true);
+          var angle = Math.atan2(dy, dx);
 
-          particles.startFollow(logo);
+          this.r1.body.setVelocity(Math.cos(angle) * 400, Math.sin(angle) * 400);
         }
       }
-
-      this.player.setOrigin(0.5);
 
       const config = {
         type: Phaser.AUTO,
         width: 800,
         height: 600,
+        backgroundColor: 'fffff',
         scene: Example,
         physics: {
           default: 'arcade',
@@ -43,7 +41,6 @@
             gravity: { x: 0, y: 0 },
           },
         },
-        roundPixels: true,
       };
 
       const game = new Phaser.Game(config);
