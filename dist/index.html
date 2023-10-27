@@ -28,6 +28,20 @@
 
           particles.startFollow(logo);
         }
+
+        update() {
+
+          // Calculate the angle toward the mouse (world coordinates) from the player
+          var dx = this.input.activePointer.worldX - this.player.x;
+          var dy = this.input.activePointer.worldY - this.player.y;
+
+          var angle = Math.atan2(dy, dx);
+
+          this.player.body.setVelocity(
+            Math.cos(angle) * 400,
+            Math.sin(angle) * 400
+          );
+        }
       }
 
       this.player.setOrigin(0.5);
