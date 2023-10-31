@@ -1,5 +1,11 @@
 {
   "ignorePatterns": ["phaser.js"],
   "extends": ["prettier"],
-  "rules": {}
+  /*"rules": {
+    "quotes": ["error", "double"]
+  },*/
+  "env": {
+    "es6": true
+  },
+  "plugins": ["html"]
 }

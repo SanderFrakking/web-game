@@ -1,49 +1,11 @@
 <!doctype html>
 <html>
   <head>
-    <script src="https://cdn.jsdelivr.net/npm/phaser@3.60.0/dist/phaser-arcade-physics.min.js"></script>
+    <script src="js/phaser.js"></script>
+    <script src="js/classes/scene1.js"></script>
+    <script src="js/classes/scene2.js"></script>
+    <script src="js/classes/Scene2v2.js"></script>
+    <script src="js/game.js"></script>
   </head>
-  <body style="background: red">
-    <script>
-      class Example extends Phaser.Scene {
-        preload() {
-          this.load.image('sprBackground', 'images/Background.jpg');
-        }
-
-        create() {
-          this.bg = this.add.tileSprite(0, 0, 8000, 8000, 'sprBackground');
-
-          this.r1 = this.add.circle(20, 20, 8, 0x6666ff);
-          this.player.setOrigin(0.5);
-          this.cameras.main.startFollow(this.player);
-        }
-
-        update() {
-          // Calculate the angle toward the mouse (world coordinates) from the player
-          var dx = this.input.activePointer.worldX - this.r1.x;
-          var dy = this.input.activePointer.worldY - this.r1.y;
-
-          var angle = Math.atan2(dy, dx);
-
-          this.r1.body.setVelocity(Math.cos(angle) * 400, Math.sin(angle) * 400);
-        }
-      }
-
-      const config = {
-        type: Phaser.AUTO,
-        width: 800,
-        height: 600,
-        backgroundColor: 'fffff',
-        scene: Example,
-        physics: {
-          default: 'arcade',
-          arcade: {
-            gravity: { x: 0, y: 0 },
-          },
-        },
-      };
-
-      const game = new Phaser.Game(config);
-    </script>
-  </body>
+  <body style="background: red"></body>
 </html>
