@@ -1,6 +1,6 @@
 class Example extends Phaser.Scene {
   preload() {
-    this.load.image('sprBackground', 'assets/img/Background.jpg');
+    this.load.image('sprBackground', 'assets/images/Background.jpg');
   }
 
   create() {

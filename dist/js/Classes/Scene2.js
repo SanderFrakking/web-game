@@ -20,7 +20,7 @@ class Scene2 extends Phaser.Scene {
     text = this.add.text(20, 20, 'Playing game!', { font: '25px Arial', fill: 'yellow' });
     MouseText = this.add.text(20, 50, 'Playing game!', { font: '25px Arial', fill: 'yellow' });
     playerText = this.add.text(20, 70, 'Playing game!', { font: '25px Arial', fill: 'yellow' });
-    this.player = this.physics.add.sprite(400, 300, './assets/img/circle.png');
+    this.player = this.physics.add.sprite(400, 300, './assets/images/circle.png');
     this.player.setCollideWorldBounds(true);
     this.cameras.main.startFollow(this.player);
     this.cameras.main.setBounds(0, 0, 1200, 500);
