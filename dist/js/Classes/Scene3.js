@@ -11,16 +11,12 @@ class Scene3 extends Phaser.Scene {
     create() {
         this.add.image(0,0, "background").setOrigin(0).setDepth(0);
 
-        let playButton = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, "playe_button").setDepth(1);
+        let playButton = this.add.image(this.game.renderer.width / 2, this.game.renderer.height / 2, "play_button").setDepth(1);
 
         playButton.setInteractive();
 
-        playButton.on("pointerover", ()=>{
-            console.log("hover")
-        })
-
         playButton.on("pointerup", ()=>{
-            console.log("game start")
+            this.scene.start('playGame');
         })
     }
 }
