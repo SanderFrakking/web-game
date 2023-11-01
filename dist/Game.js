@@ -1,6 +1,6 @@
 class Example extends Phaser.Scene {
   preload() {
-    this.load.image('sprBackground', 'assets/img/Background.jpg');
+    this.load.image('sprBackground', 'assets/images/Background.jpg');
   }
 
   create() {
@@ -15,7 +15,7 @@ const config = {
   width: 800,
   height: 600,
   backgroundColor: 'fffff',
-  scene: [Scene1, Scene2],
+  scene: [Scene3, Scene1, Scene2],
   physics: {
     default: 'arcade',
     arcade: {
