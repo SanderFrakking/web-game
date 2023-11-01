@@ -12,10 +12,15 @@ class Example extends Phaser.Scene {
 
 const config = {
   type: Phaser.AUTO,
-  width: 800,
-  height: 600,
+  scale: {
+    parent: 'body',
+    mode: Phaser.Scale.FIT,
+    mode: Phaser.Scale.RESIZE,
+  },
+
   backgroundColor: 'fffff',
-  scene: [Scene3, Scene1, Scene2],
+  scene: [Scene1, Scene2],
+
   physics: {
     default: 'arcade',
     arcade: {
