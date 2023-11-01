@@ -12,8 +12,8 @@ class Example extends Phaser.Scene {
 
 const config = {
   type: Phaser.AUTO,
-  width: 1200,
-  height: 500,
+  width: 800,
+  height: 600,
   backgroundColor: 'fffff',
   scene: [Scene1, Scene2],
   physics: {
@@ -25,3 +25,4 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
+game.input.mouse.capture = true;
