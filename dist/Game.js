@@ -16,9 +16,10 @@ const config = {
     parent: 'body',
     mode: Phaser.Scale.FIT,
     mode: Phaser.Scale.RESIZE,
+    autoCenter: Phaser.Scale.CENTER_BOTH, // Center the game on the screen
   },
 
-  backgroundColor: 'fffff',
+  backgroundColor: '#fffff',
   scene: [Scene3, Scene1, Scene2],
 
   physics: {

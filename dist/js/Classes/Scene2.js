@@ -4,6 +4,7 @@ var MouseText;
 var playerText;
 let objectGroup; // Groep waar de ballen in komen
 let spawnTimer;
+let score = 0; // Initialize the score variable
 
 const gameWidth = 4000; //X
 const gameHeight = 4000; //Y
@@ -22,11 +23,17 @@ class Scene2 extends Phaser.Scene {
   }
 
   create() {
-    /* wat UI test code
+    //wat UI test code
     text = this.add.text(20, 20, 'Playing game!', { font: '25px Arial', fill: 'yellow' });
     MouseText = this.add.text(50, 50, 'Playing game!', { font: '25px Arial', fill: 'yellow' });
-    playerText = this.add.text(20, 70, 'Playing game!', { font: '25px Arial', fill: 'yellow' });
-    */
+    //playerText = this.add.text(20, 70, 'Playing game!', { font: '25px Arial', fill: 'yellow' });
+
+    // Display the score on the screen
+    this.scoreText = this.add.text(0, 0, 'Score: 0', {
+      font: '25px Arial',
+      fill: 'yellow',
+    });
+    this.scoreText.setScrollFactor(0);
 
     //stelt de wereld in
     this.physics.world.setBounds(0, 0, gameWidth, gameHeight);
@@ -69,6 +76,19 @@ class Scene2 extends Phaser.Scene {
   update() {
     //UI test
     /* MouseText.setText('x:' + game.input.mousePointer.x + ' Y: ' + game.input.mousePointer.y); */
+    MouseText.setText('x:' + game.input.mousePointer.x + ' Y: ' + game.input.mousePointer.y);
+
+    // Check for collisions between player and round objects
+    this.physics.overlap(this.player, objectGroup, (player, object) => {
+      // Remove the collected object
+      object.destroy();
+
+      // Increase the score
+      score += 1;
+
+      // Update the score text on the screen
+      this.scoreText.setText('Score: ' + score);
+    });
 
     // haalt de muis positie op
     const mouseX = game.input.mousePointer.x + this.cameras.main.scrollX;
