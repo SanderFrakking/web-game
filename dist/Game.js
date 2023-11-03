@@ -19,7 +19,7 @@ const config = {
   },
 
   backgroundColor: 'fffff',
-  scene: [Scene1, Scene2],
+  scene: [Scene3, Scene1, Scene2],
 
   physics: {
     default: 'arcade',
