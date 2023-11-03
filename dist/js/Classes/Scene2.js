@@ -1,7 +1,5 @@
+// Scene2.js
 var player;
-var text;
-var MouseText;
-var playerText;
 let objectGroup; // Groep waar de ballen in komen
 let spawnTimer;
 let score = 0; // Initialize the score variable
@@ -24,16 +22,7 @@ class Scene2 extends Phaser.Scene {
 
   create() {
     //wat UI test code
-    text = this.add.text(20, 20, 'Playing game!', { font: '25px Arial', fill: 'yellow' });
-    MouseText = this.add.text(50, 50, 'Playing game!', { font: '25px Arial', fill: 'yellow' });
-    //playerText = this.add.text(20, 70, 'Playing game!', { font: '25px Arial', fill: 'yellow' });
-
-    // Display the score on the screen
-    this.scoreText = this.add.text(0, 0, 'Score: 0', {
-      font: '25px Arial',
-      fill: 'yellow',
-    });
-    this.scoreText.setScrollFactor(0);
+    // score op scherm
 
     //stelt de wereld in
     this.physics.world.setBounds(0, 0, gameWidth, gameHeight);
@@ -43,20 +32,20 @@ class Scene2 extends Phaser.Scene {
     //maakt de player aan
     this.player = this.physics.add.sprite(gameWidth / 2, gameHeight / 2, 'circle');
     this.player.setTint(0xff0000);
-    this.player.displayHeight = 50;
-    this.player.displayWidth = 50;
+    this.player.displayHeight = 10;
+    this.player.displayWidth = 10;
     this.player.setCollideWorldBounds(true);
 
     //stelt de camera in
     this.cameras.main.startFollow(this.player);
     this.cameras.main.setBounds(0, 0, gameHeight, 4000);
 
-    //a group to hold the round objects
+    //groep om de objecten in te zetten
     objectGroup = this.physics.add.group();
 
-    //a timer to spawn objects at regular intervals
+    //timer om de objecten te spawnen
     spawnTimer = this.time.addEvent({
-      delay: 1000, // Spawn an object every 1000 milliseconds (1 second)
+      delay: 100,
       callback: spawnObject,
       callbackScope: this,
       loop: true,
@@ -74,20 +63,15 @@ class Scene2 extends Phaser.Scene {
   }
 
   update() {
-    //UI test
-    /* MouseText.setText('x:' + game.input.mousePointer.x + ' Y: ' + game.input.mousePointer.y); */
-    MouseText.setText('x:' + game.input.mousePointer.x + ' Y: ' + game.input.mousePointer.y);
-
-    // Check for collisions between player and round objects
     this.physics.overlap(this.player, objectGroup, (player, object) => {
-      // Remove the collected object
       object.destroy();
 
-      // Increase the score
       score += 1;
 
-      // Update the score text on the screen
-      this.scoreText.setText('Score: ' + score);
+      this.score += 1;
+      this.events.emit('addScore');
+      this.player.displayHeight++;
+      this.player.displayWidth++;
     });
 
     // haalt de muis positie op

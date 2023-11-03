@@ -1,3 +1,4 @@
+// Game.js
 class Example extends Phaser.Scene {
   preload() {
     this.load.image('sprBackground', 'assets/images/Background.jpg');
@@ -9,6 +10,9 @@ class Example extends Phaser.Scene {
 
   update() {}
 }
+const sharedData = {
+  score: 0, // Initialize the score variable
+};
 
 const config = {
   type: Phaser.AUTO,
@@ -20,7 +24,8 @@ const config = {
   },
 
   backgroundColor: '#fffff',
-  scene: [Scene3, Scene1, Scene2],
+  scene: [Scene3, Scene1, Scene2, UIScene],
+  sharedData: sharedData, // Pass the shared data to scenes
 
   physics: {
     default: 'arcade',
